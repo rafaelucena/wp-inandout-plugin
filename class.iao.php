@@ -87,7 +87,21 @@ class InAndOut
     public static function InAndOutSettings()
     {
         $message = '';
+        $error = '';
         if (isset($_POST['insert'])) {
+            $path = $_POST['path'];
+            $filename = $_POST['filename'];
+
+            if (empty($path) || empty($filename)) {
+                self::view('settings', array('config' => self::$config, 'error' => 'Values cannot be empty'));
+                return;
+            }
+
+            if (preg_match('/^[A-z0-9]+$/', $path, $match) === 0 || preg_match('/^[A-z0-9-]+$/', $filename, $match) === 0) {
+                self::view('settings', array('config' => self::$config, 'error' => 'Names are invalid, must use letters or numbers or hyphens only'));
+                return;
+            }
+
             $path = $_POST['path'];
             $filename = $_POST['filename'];
 

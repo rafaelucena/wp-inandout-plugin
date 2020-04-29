@@ -1,6 +1,7 @@
 <div class="wrap">
     <h2>In/Out Settings</h2>
     <?php if (empty($message) === false): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
+    <?php if (empty($error) === false): ?><div class="error"><p><?php echo $error; ?></p></div><?php endif; ?>
     <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
     <table class="form-table" role="presentation">
         <tr>
